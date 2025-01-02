@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Histórico de Alterações</title>
+  <link rel="stylesheet" href="style.css" />
+
+</head>
+<body>
+  <div class="container">
+    <h1>Histórico de Alterações</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Ação</th>
+          <th>Produto</th>
+          <th>Detalhes</th>
+        </tr>
+      </thead>
+      <tbody id="tabela-historico"></tbody>
+    </table>
+  </div>
+
+  <script>
+    // Carregar o histórico do localStorage
+    const historico = JSON.parse(localStorage.getItem('historico')) || [];
+    const tabelaHistorico = document.getElementById('tabela-historico');
+
+    historico.forEach(item => {
+      const row = `
+        <tr>
+          <td>${item.data}</td>
+          <td>${item.acao}</td>
+          <td>${item.produto}</td>
+          <td>${item.detalhes}</td>
+        </tr>
+      `;
+      tabelaHistorico.innerHTML += row;
+    });
+  </script>
+</body>
+</html>

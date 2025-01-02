@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gerenciamento de Botijões de Gás</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Gerenciamento de Botijões de Gás</h1>
+    
+    <!-- Link para histórico de alterações -->
+    <a href="historico.html" target="_blank">Ver Histórico de Alterações</a>
+
+    <!-- Formulário -->
+    <div class="form">
+      <input type="text" id="descricao" placeholder="Descrição do botijão" />
+      <input type="number" id="quantidade" placeholder="Quantidade" />
+      <select id="status">
+        <option value="Cheio">Cheio</option>
+        <option value="Vazio">Vazio</option>
+      </select>
+      <input type="number" id="valorCompra" placeholder="Valor de Compra (R$)" step="0.01" />
+      <input type="number" id="porcentagemLucro" placeholder="% de Lucro" step="0.01" />
+      <button id="adicionar">Salvar</button>
+      <button id="cancelarEdicao" style="display: none;">Cancelar</button>
+    </div>
+
+    <!-- Tabela -->
+    <table>
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Descrição</th>
+          <th>Quantidade</th>
+          <th>Status</th>
+          <th>Compra (R$)</th>
+          <th>% Lucro</th>
+          <th>Venda (R$)</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="tabela-botijoes"></tbody>
+    </table>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

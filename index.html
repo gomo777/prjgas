@@ -1,50 +1,1026 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gerenciamento de Botijões de Gás</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-go - Carros Elétricos Solares</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+```
+    :root {
+        --verde-escuro: #1a4d3a;
+        --branco-gelo: #f8f9fa;
+        --prata-metalico: #c0c5ce;
+        --accent: #28a745;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: var(--branco-gelo);
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    header {
+        background: linear-gradient(135deg, var(--verde-escuro), #2d5a47);
+        color: white;
+        padding: 1rem 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-size: 2rem;
+        font-weight: bold;
+        background: linear-gradient(45deg, #fff, var(--prata-metalico));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+    }
+
+    .nav-links a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+        color: var(--accent);
+    }
+
+    .hero {
+        background: linear-gradient(135deg, var(--verde-escuro), #2d5a47);
+        color: white;
+        padding: 120px 0 80px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+        animation: float 20s infinite linear;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(100px); }
+        100% { transform: translateY(-100px); }
+    }
+
+    .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero p {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    .btn {
+        display: inline-block;
+        background: var(--accent);
+        color: white;
+        padding: 12px 30px;
+        text-decoration: none;
+        border-radius: 50px;
+        transition: all 0.3s;
+        position: relative;
+        z-index: 2;
+    }
+
+    .btn:hover {
+        background: #218838;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+    }
+
+    .section {
+        padding: 80px 0;
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: var(--verde-escuro);
+    }
+
+    .about {
+        background: white;
+    }
+
+    .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+    }
+
+    .about-text h3 {
+        color: var(--verde-escuro);
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .values {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+
+    .value-card {
+        background: var(--branco-gelo);
+        padding: 2rem;
+        border-radius: 10px;
+        text-align: center;
+        transition: transform 0.3s;
+        border-left: 4px solid var(--accent);
+    }
+
+    .value-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .team {
+        background: var(--branco-gelo);
+    }
+
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+
+    .team-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+    }
+
+    .team-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .team-card h3 {
+        color: var(--verde-escuro);
+        margin-bottom: 0.5rem;
+    }
+
+    .products {
+        background: white;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .carousel-container {
+        position: relative;
+        width: 100%;
+        height: 600px;
+        overflow: hidden;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .carousel-track {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        height: 100%;
+    }
+
+    .carousel-slide {
+        min-width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, var(--verde-escuro), #2d5a47);
+        color: white;
+        position: relative;
+    }
+
+    .slide-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        width: 100%;
+        padding: 3rem;
+        align-items: center;
+    }
+
+    .slide-info h3 {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(45deg, #fff, var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .slide-info p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+    }
+
+    .specs {
+        list-style: none;
+        margin: 0;
+    }
+
+    .specs li {
+        padding: 0.8rem 0;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        font-size: 1.1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .specs li:last-child {
+        border-bottom: none;
+    }
+
+    .spec-label {
+        font-weight: 500;
+    }
+
+    .spec-value {
+        color: var(--accent);
+        font-weight: bold;
+    }
+
+    .car-image-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 400px;
+        background: rgba(255,255,255,0.1);
+        border-radius: 15px;
+        border: 2px dashed rgba(255,255,255,0.3);
+        position: relative;
+        backdrop-filter: blur(5px);
+    }
+
+    .car-image-placeholder {
+        text-align: center;
+        color: rgba(255,255,255,0.6);
+        font-size: 1.1rem;
+    }
+
+    .car-image {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        border-radius: 10px;
+    }
+
+    .carousel-nav {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .nav-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(26, 77, 58, 0.3);
+        cursor: pointer;
+        transition: all 0.3s;
+        border: none;
+    }
+
+    .nav-dot.active {
+        background: var(--verde-escuro);
+        transform: scale(1.3);
+    }
+
+    .carousel-arrows {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255,255,255,0.2);
+        border: none;
+        color: white;
+        font-size: 2rem;
+        padding: 1rem;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s;
+        backdrop-filter: blur(10px);
+        z-index: 10;
+    }
+
+    .carousel-arrows:hover {
+        background: rgba(255,255,255,0.3);
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .carousel-arrows.prev {
+        left: 20px;
+    }
+
+    .carousel-arrows.next {
+        right: 20px;
+    }
+
+    .slide-number {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        background: rgba(0,0,0,0.3);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        backdrop-filter: blur(10px);
+    }
+
+    @media (max-width: 768px) {
+        .slide-content {
+            grid-template-columns: 1fr;
+            padding: 2rem;
+            gap: 2rem;
+        }
+        
+        .slide-info h3 {
+            font-size: 2rem;
+        }
+        
+        .car-image-container {
+            height: 250px;
+        }
+        
+        .carousel-arrows {
+            display: none;
+        }
+    }
+
+    .stats {
+        background: var(--verde-escuro);
+        color: white;
+        text-align: center;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+    }
+
+    .stat-item h3 {
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+        color: var(--accent);
+    }
+
+    .finances {
+        background: var(--branco-gelo);
+    }
+
+    .finance-table {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        margin-bottom: 2rem;
+    }
+
+    .finance-table table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .finance-table th,
+    .finance-table td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+    }
+
+    .finance-table th {
+        background: var(--verde-escuro);
+        color: white;
+    }
+
+    footer {
+        background: var(--verde-escuro);
+        color: white;
+        text-align: center;
+        padding: 2rem 0;
+    }
+
+    @media (max-width: 768px) {
+        .nav-links {
+            display: none;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+        
+        .about-content {
+            grid-template-columns: 1fr;
+        }
+        
+        .hero {
+            padding: 100px 0 60px;
+        }
+    }
+
+    .scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateX(-50%) translateY(0);
+        }
+        40% {
+            transform: translateX(-50%) translateY(-10px);
+        }
+        60% {
+            transform: translateX(-50%) translateY(-5px);
+        }
+    }
+</style>
+```
+
 </head>
 <body>
-  <div class="container">
-    <h1>Gerenciamento de Botijões de Gás</h1>
-    
-    <!-- Link para histórico de alterações -->
-    <a href="historico.html" target="_blank">Ver Histórico de Alterações</a>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <svg width="40" height="40" viewBox="0 0 100 100" fill="currentColor" style="margin-right: 10px; vertical-align: middle;">
+                    <path d="M50 10c-5 0-10 2-13 5l-15 15c-3 3-5 8-5 13v20c0 8 6 14 14 14h6c3 0 6-1 8-3l15-15c2-2 3-5 3-8V30c0-8-6-14-14-14h-6c-3 0-6 1-8 3L20 34c-2 2-3 5-3 8v21c0 5 4 9 9 9h4c2 0 4-1 5-2l8-8c1-1 2-3 2-5V45c0-2-2-4-4-4h-2c-1 0-2 0-2 1l-4 4c0 1-1 2-1 3v8c0 1 1 2 2 2h1c1 0 1 0 2-1l2-2c0 0 1-1 1-2v-4c0-1-1-1-1-1h-1zm25-5c8 0 15 7 15 15v30c0 8-7 15-15 15s-15-7-15-15V20c0-8 7-15 15-15z"/>
+                </svg>
+                e-go
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#about">Empresa</a></li>
+                <li><a href="#team">Equipe</a></li>
+                <li><a href="#products">Produtos</a></li>
+                <li><a href="#finances">Finanças</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Formulário -->
-    <div class="form">
-      <input type="text" id="descricao" placeholder="Descrição do botijão" />
-      <input type="number" id="quantidade" placeholder="Quantidade" />
-      <select id="status">
-        <option value="Cheio">Cheio</option>
-        <option value="Vazio">Vazio</option>
-      </select>
-      <input type="number" id="valorCompra" placeholder="Valor de Compra (R$)" step="0.01" />
-      <input type="number" id="porcentagemLucro" placeholder="% de Lucro" step="0.01" />
-      <button id="adicionar">Salvar</button>
-      <button id="cancelarEdicao" style="display: none;">Cancelar</button>
+```
+<section id="home" class="hero">
+    <div class="container">
+        <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
+            <svg width="80" height="80" viewBox="0 0 100 100" fill="white" style="margin-right: 20px;">
+                <path d="M50 5c-3 0-6 1-8 3L25 25c-2 2-3 5-3 8v30c0 6 4 10 10 10h8c2 0 4-1 5-2l15-15c1-1 2-3 2-5V35c0-6-4-10-10-10h-8c-2 0-4 1-5 2L24 42c-1 1-2 3-2 5v25c0 3 3 6 6 6h6c1 0 2 0 3-1l10-10c1-1 1-2 1-3V50c0-1-1-2-2-2h-3c-1 0-1 0-2 1l-5 5c0 1-1 1-1 2v10c0 1 1 1 1 1h2c0 0 1 0 1-1l3-3c0 0 0-1 0-1v-6c0 0 0-1-1-1h-1zm30-2c6 0 11 5 11 11v35c0 6-5 11-11 11s-11-5-11-11V14c0-6 5-11 11-11z"/>
+            </svg>
+            <h1>e-go</h1>
+        </div>
+        <p>Carros Elétricos Movidos a Energia Solar</p>
+        <p>Totalmente Autossuficientes • Inovação Sustentável</p>
+        <a href="#about" class="btn">Conheça Nossa Tecnologia</a>
     </div>
+    <div class="scroll-indicator">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="currentColor">
+            <path d="M15 20l-7-7h14l-7 7z"/>
+        </svg>
+    </div>
+</section>
 
-    <!-- Tabela -->
-    <table>
-      <thead>
-        <tr>
-          <th>Código</th>
-          <th>Descrição</th>
-          <th>Quantidade</th>
-          <th>Status</th>
-          <th>Compra (R$)</th>
-          <th>% Lucro</th>
-          <th>Venda (R$)</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody id="tabela-botijoes"></tbody>
-    </table>
-  </div>
+<section id="about" class="section about">
+    <div class="container">
+        <h2 class="section-title">Nossa Empresa</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Missão</h3>
+                <p>Contribuir com o mundo por meio de novas tecnologias que fomentem o desenvolvimento sustentável e a inovação global.</p>
+                
+                <h3>Visão</h3>
+                <p>Tornar-se uma corporação líder no segmento automobilístico sustentável, impactando positivamente na ecoeficiência global.</p>
+            </div>
+            <div class="about-text">
+                <h3>Sobre a e-go</h3>
+                <p>Nossa empresa oferece um produto automobilístico inovador: um carro elétrico movido a energia solar, totalmente autossuficiente.</p>
+                <p>É uma companhia de grande porte, com natureza jurídica de Sociedade Anônima (S.A.) de Capital Aberto, regida de acordo com as normas vigentes.</p>
+            </div>
+        </div>
+        
+        <div class="values">
+            <div class="value-card">
+                <h3>Sustentabilidade</h3>
+                <p>Crescimento e estabilidade ambiental</p>
+            </div>
+            <div class="value-card">
+                <h3>Qualidade</h3>
+                <p>Eficiência e modernidade</p>
+            </div>
+            <div class="value-card">
+                <h3>Ética</h3>
+                <p>Organização e transparência</p>
+            </div>
+            <div class="value-card">
+                <h3>Inovação</h3>
+                <p>Tecnologia e sofisticação</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-  <script src="script.js"></script>
+<section id="team" class="section team">
+    <div class="container">
+        <h2 class="section-title">Nossa Equipe</h2>
+        <div class="team-grid">
+            <div class="team-card">
+                <h3>Guilherme Menck</h3>
+                <p>CEO</p>
+            </div>
+            <div class="team-card">
+                <h3>Pedro Lucas</h3>
+                <p>Vice-Presidente Executivo</p>
+            </div>
+            <div class="team-card">
+                <h3>Pablo Sincariuc</h3>
+                <p>Diretor Industrial</p>
+            </div>
+            <div class="team-card">
+                <h3>Guilherme Oliveira</h3>
+                <p>Gerente Estratégico</p>
+            </div>
+            <div class="team-card">
+                <h3>João Victor</h3>
+                <p>Gerente Operacional</p>
+            </div>
+            <div class="team-card">
+                <h3>José Constante</h3>
+                <p>Gerente Administrativo</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="products" class="section products">
+    <div class="container">
+        <h2 class="section-title">Linha de Produtos</h2>
+        
+        <div class="carousel-container">
+            <div class="carousel-track" id="carouselTrack">
+                <!-- Slide 1 - SOLIS ONE -->
+                <div class="carousel-slide">
+                    <div class="slide-number">1 / 3</div>
+                    <div class="slide-content">
+                        <div class="slide-info">
+                            <h3>SOLIS ONE</h3>
+                            <p>O modelo de entrada da nossa linha, perfeito para o uso urbano com eficiência máxima e design elegante.</p>
+                            <ul class="specs">
+                                <li>
+                                    <span class="spec-label">Aceleração 0-100 km/h:</span>
+                                    <span class="spec-value">6 segundos</span>
+                                </li>
+                                <li>
+                                    <span class="spec-label">Velocidade Máxima:</span>
+                                    <span class="spec-value">180 km/h</span>
+                                </li>
+                                <li>
+                                    <span class="spec-label">Autonomia:</span>
+                                    <span class="spec-value">400 km</span>
+                                </li>
+                                <li>
+                                    <span class="spec-label">Tempo de Recarga:</span>
+                                    <span class="spec-value">4 horas</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="car-image-container">
+                            <div class="car-image-placeholder">
+                                <div>📷</div>
+                                <div>Inserir imagem PNG<br>do SOLIS ONE aqui</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 - SOLIS ONE TOURING -->
+                <div class="carousel-slide" style="background: linear-gradient(135deg, #2d5a47, #1a4d3a);">
+                    <div class="slide-number">2 / 3</div>
+                    <div class="slide-content">
+                        <div class="slide-info">
+                            <h3>SOLIS ONE TOURING</h3>
+                            <p>Ideal para longas viagens, oferece conforto superior e maior autonomia para aventuras sem limites.</p>
+                            <ul class="specs">
+                                <li>
+                                    <span class="spec-label">Aceleração 0-100 km/h:</span>
+                                    <span class="spec-value">8.3 segundos</span>
+                                </li>
+                                <li>
+                                    <span class="spec-label">Velocidade Máxima:</span>
+                                    <span class="spec-value">220 km/h</span>
+                                </li>
+                                <li>
+                                    <span class="spec-label">Potência Máxima:</span>
+                                    <span class="spec-value">247 cv</span>
+                                </li>
+                                <li>
+                                    <span class="spec-label">Autonomia:</span>
+                                    <span class="spec-value">443 km</span>
+                                </li>
+                                <li>
+                                    <span class="spec-label">Tempo de Recarga:</span>
+                                    <span class="spec-value">5 horas</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="car-image-container">
+                            <div class="car-image-placeholder">
+                                <div>📷</div>
+                                <div>Inserir imagem PNG<br>do SOLIS ONE TOURING aqui</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 - SOLIS ONE GT -->
+                <div class="carousel-slide" style="background: linear-gradient(135deg, #1a4d3a, #0f3a2a);">
+                    <div class="slide-number">3 / 3</div>
+                    <div class="slide-content">
+                        <div class="slide-info">
+                            <h3>SOLIS ONE GT</h3>
+                            <p>A versão mais potente da linha, desenvolvida para máxima performance e experiência de condução esportiva.</p>
+                            <ul class="specs">
+                                <li>
+                                    <span class="spec-label">Aceleração 0-100 km/h:</span>
+                                    <span class="spec-value">3.6 segundos</span>
+                                </li>
+                                <li>
+                                    <span class="spec-label">Velocidade Máxima:</span>
+                                    <span class="spec-value">390 km/h</span>
+                                </li>
+                                <li>
+                                    <span class="spec-label">Potência Máxima:</span>
+                                    <span class="spec-value">548 cv</span>
+                                </li>
+                                <li>
+                                    <span class="spec-label">Autonomia:</span>
+                                    <span class="spec-value">372 km</span>
+                                </li>
+                                <li>
+                                    <span class="spec-label">Tempo de Recarga:</span>
+                                    <span class="spec-value">3 horas</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="car-image-container">
+                            <div class="car-image-placeholder">
+                                <div>📷</div>
+                                <div>Inserir imagem PNG<br>do SOLIS ONE GT aqui</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Setas de navegação -->
+            <button class="carousel-arrows prev" onclick="moveSlide(-1)">‹</button>
+            <button class="carousel-arrows next" onclick="moveSlide(1)">›</button>
+        </div>
+
+        <!-- Indicadores de navegação -->
+        <div class="carousel-nav">
+            <button class="nav-dot active" onclick="currentSlide(1)"></button>
+            <button class="nav-dot" onclick="currentSlide(2)"></button>
+            <button class="nav-dot" onclick="currentSlide(3)"></button>
+        </div>
+    </div>
+</section>
+
+<section class="section stats">
+    <div class="container">
+        <h2 class="section-title">Pesquisa de Mercado</h2>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>31/40</h3>
+                <p>Pessoas acreditam no futuro dos carros elétricos</p>
+            </div>
+            <div class="stat-item">
+                <h3>25/40</h3>
+                <p>Pessoas comprariam um carro elétrico</p>
+            </div>
+            <div class="stat-item">
+                <h3>77.5%</h3>
+                <p>Taxa de confiança no mercado</p>
+            </div>
+            <div class="stat-item">
+                <h3>62.5%</h3>
+                <p>Intenção de compra</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="finances" class="section finances">
+    <div class="container">
+        <h2 class="section-title">Investimento Inicial</h2>
+        <div class="finance-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Valor (US$)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Reserva Financeira</td>
+                        <td>US$ 1.124 bilhão</td>
+                    </tr>
+                    <tr>
+                        <td>Construção da Fábrica</td>
+                        <td>US$ 400 milhões</td>
+                    </tr>
+                    <tr>
+                        <td>Pesquisa e Desenvolvimento</td>
+                        <td>US$ 300 milhões</td>
+                    </tr>
+                    <tr>
+                        <td>Compra de Equipamentos</td>
+                        <td>US$ 150 milhões</td>
+                    </tr>
+                    <tr>
+                        <td>Desenvolvimento da Bateria</td>
+                        <td>US$ 100 milhões</td>
+                    </tr>
+                    <tr>
+                        <td>Custos Pré-Operacionais</td>
+                        <td>US$ 50 milhões</td>
+                    </tr>
+                    <tr>
+                        <td>Marketing Pré-Lançamento</td>
+                        <td>US$ 30 milhões</td>
+                    </tr>
+                    <tr style="background: var(--verde-escuro); color: white; font-weight: bold;">
+                        <td>TOTAL</td>
+                        <td>US$ 2.154 bilhões</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <h3 style="text-align: center; margin: 3rem 0 2rem; color: var(--verde-escuro);">Projeção de Crescimento (10 anos)</h3>
+        <div class="stats-grid">
+            <div class="stat-item" style="color: var(--verde-escuro);">
+                <h3 style="color: var(--accent);">US$ 5.62bi</h3>
+                <p>Receita projetada no ano 10</p>
+            </div>
+            <div class="stat-item" style="color: var(--verde-escuro);">
+                <h3 style="color: var(--accent);">US$ 2.04bi</h3>
+                <p>Lucro projetado no ano 10</p>
+            </div>
+            <div class="stat-item" style="color: var(--verde-escuro);">
+                <h3 style="color: var(--accent);">US$ 40.96bi</h3>
+                <p>Valor de mercado no ano 10</p>
+            </div>
+            <div class="stat-item" style="color: var(--verde-escuro);">
+                <h3 style="color: var(--accent);">264%</h3>
+                <p>ROI no primeiro ano de lucro</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 e-go. Todos os direitos reservados. | Sustentabilidade • Inovação • Futuro</p>
+    </div>
+</footer>
+
+<script>
+    // Smooth scrolling para os links de navegação
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Carousel functionality
+    let currentSlideIndex = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const totalSlides = slides.length;
+    const track = document.getElementById('carouselTrack');
+
+    function updateCarousel() {
+        const translateX = -currentSlideIndex * 100;
+        track.style.transform = `translateX(${translateX}%)`;
+        
+        // Update dots
+        document.querySelectorAll('.nav-dot').forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlideIndex);
+        });
+    }
+
+    function moveSlide(direction) {
+        currentSlideIndex += direction;
+        
+        if (currentSlideIndex >= totalSlides) {
+            currentSlideIndex = 0;
+        } else if (currentSlideIndex < 0) {
+            currentSlideIndex = totalSlides - 1;
+        }
+        
+        updateCarousel();
+    }
+
+    function currentSlide(n) {
+        currentSlideIndex = n - 1;
+        updateCarousel();
+    }
+
+    // Touch/swipe functionality for mobile
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+
+    const carouselContainer = document.querySelector('.carousel-container');
+
+    carouselContainer.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+    });
+
+    carouselContainer.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        currentX = e.touches[0].clientX;
+    });
+
+    carouselContainer.addEventListener('touchend', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        
+        const diffX = startX - currentX;
+        const threshold = 50; // minimum distance for swipe
+        
+        if (Math.abs(diffX) > threshold) {
+            if (diffX > 0) {
+                moveSlide(1); // swipe left, next slide
+            } else {
+                moveSlide(-1); // swipe right, previous slide
+            }
+        }
+    });
+
+    // Mouse drag functionality for desktop
+    carouselContainer.addEventListener('mousedown', (e) => {
+        startX = e.clientX;
+        isDragging = true;
+        carouselContainer.style.cursor = 'grabbing';
+    });
+
+    carouselContainer.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        currentX = e.clientX;
+    });
+
+    carouselContainer.addEventListener('mouseup', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        carouselContainer.style.cursor = 'grab';
+        
+        const diffX = startX - currentX;
+        const threshold = 50;
+        
+        if (Math.abs(diffX) > threshold) {
+            if (diffX > 0) {
+                moveSlide(1);
+            } else {
+                moveSlide(-1);
+            }
+        }
+    });
+
+    carouselContainer.addEventListener('mouseleave', () => {
+        isDragging = false;
+        carouselContainer.style.cursor = 'grab';
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            moveSlide(-1);
+        } else if (e.key === 'ArrowRight') {
+            moveSlide(1);
+        }
+    });
+
+    // Auto-play (optional)
+    let autoplayInterval;
+    
+    function startAutoplay() {
+        autoplayInterval = setInterval(() => {
+            moveSlide(1);
+        }, 5000); // Change slide every 5 seconds
+    }
+
+    function stopAutoplay() {
+        clearInterval(autoplayInterval);
+    }
+
+    // Start autoplay and pause on hover
+    carouselContainer.addEventListener('mouseenter', stopAutoplay);
+    carouselContainer.addEventListener('mouseleave', startAutoplay);
+    
+    // Initialize
+    carouselContainer.style.cursor = 'grab';
+    startAutoplay();
+
+    // Animação de entrada dos elementos
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Aplicar animação aos elementos
+    document.querySelectorAll('.team-card, .value-card, .stat-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'all 0.6s ease-out';
+        observer.observe(el);
+    });
+
+    // Header transparente ao rolar
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 100) {
+            header.style.background = 'rgba(26, 77, 58, 0.95)';
+            header.style.backdropFilter = 'blur(10px)';
+        } else {
+            header.style.background = 'linear-gradient(135deg, var(--verde-escuro), #2d5a47)';
+            header.style.backdropFilter = 'none';
+        }
+    });
+</script>
+```
+
 </body>
 </html>
